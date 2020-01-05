@@ -36,7 +36,7 @@ const Blog = () => {
           node {
             title
             slug
-            publishedDate(formatString: "YYYY MM DD")
+            publishedDate(formatString: "DD/MM/YYYY")
           }
         }
       }
@@ -51,9 +51,7 @@ const Blog = () => {
         {data.allContentfulBlogPost.edges.map((edge, i) => {
           return (
             <li key={i}>
-              <Link to={`/blog/${edge.node.slug}`}>
-                {edge.node.title}
-              </Link>
+              <Link to={`/blog/${edge.node.slug}`}>{edge.node.title}</Link>
               <p>{edge.node.publishedDate}</p>
             </li>
           )
