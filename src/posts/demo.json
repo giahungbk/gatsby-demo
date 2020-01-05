@@ -1,0 +1,7 @@
+{
+  "users": [
+    { "id": 1, "name": "hung1" },
+    { "id": 2, "name": "hung2" },
+    { "id": 3, "name": "hung3" }
+  ]
+}
