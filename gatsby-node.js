@@ -7,8 +7,10 @@ const path = require("path")
   const { createNodeField } = actions
 
   if (node.internal.type === "MarkdownRemark") {
+    //* cut name file md => slug name
     const slug = path.basename(node.fileAbsolutePath, ".md")
 
+    //* create fields slug query. in createPages get slug query
     createNodeField({
       node,
       name: "slug",
