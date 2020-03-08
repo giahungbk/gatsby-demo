@@ -1,0 +1,8 @@
+.mainBlog {
+  display: flex;
+  flex-direction: row;
+  .content,
+  .sidebar {
+    width: 100%;
+  }
+}

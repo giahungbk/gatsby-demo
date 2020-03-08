@@ -3,35 +3,11 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/Layout"
 import Head from "../components/Head"
-import Sidebar from '../components/Sidebar'
+import Sidebar from "../components/Sidebar"
 
-import blogStyle from '../styles/blog.module.scss'
+import blogStyle from "../styles/blog.module.scss"
 
-/**
- * Goal: Link to blog post
- * 1. Fetch the slug for posts
- * 2. Use slug to generate a link to the post page
- * 3. test your work
- */
-
-const Blog = () => {
-  // let data = useStaticQuery(graphql`
-  //   query {
-  //     allMarkdownRemark {
-  //       edges {
-  //         node {
-  //           frontmatter {
-  //             title
-  //             date
-  //           }
-  //           fields {
-  //             slug
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+const Tag = props => {
   let data = useStaticQuery(graphql`
     query {
       allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
@@ -47,19 +23,24 @@ const Blog = () => {
       }
     }
   `)
+  let blogTags = data.allContentfulBlogPost.edges.filter(
+    ({ node }) => node.tags.indexOf(props.pageContext.tag) > -1
+  )
 
   return (
     <Layout>
-      <Head title="Blog" />
+      <Head title="Tags" />
       <main className={blogStyle.mainBlog}>
         <div className={blogStyle.content}>
-          <h1>Blog</h1>
+          <h1>Tag {props.pageContext.tag}</h1>
           <ol>
-            {data.allContentfulBlogPost.edges.map((edge, i) => {
+            {blogTags.map((blogTag, i) => {
               return (
                 <li key={i}>
-                  <Link to={`/blog/${edge.node.slug}`}>{edge.node.title}</Link>
-                  <p>{edge.node.publishedDate}</p>
+                  <Link to={`/blog/${blogTag.node.slug}`}>
+                    {blogTag.node.title}
+                  </Link>
+                  <p>{blogTag.node.publishedDate}</p>
                 </li>
               )
             })}
@@ -73,4 +54,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default Tag

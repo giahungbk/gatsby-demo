@@ -2,6 +2,10 @@
  * Configure your Gatsby site with this file.
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
+ * gatsby-source-filesystem: read file system
+ * gatsby-plugin-sass: sass => css
+ * gatsby-transformer-remark: quet file markdown trong path
+ *  plugin gatsby-plugin-sharp vì gatsby-remark-images: xu ly anh
  */
 
 module.exports = {
@@ -15,7 +19,8 @@ module.exports = {
       options: {
         spaceId: `${process.env.CONTENTFUL_SPACE_ID}`,
         // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`,
+        environment: "master",
       },
     },
     "gatsby-plugin-sass",
@@ -48,6 +53,12 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        layout: require.resolve(`./src/components/Header.js`),
       },
     },
   ],

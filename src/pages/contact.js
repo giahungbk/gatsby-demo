@@ -5,9 +5,9 @@ import Head from '../components/Head'
 
 export default function contact() {
     return (
-        <Layout>
-            <Head title="Contact" />
-            <h1>Contact</h1>
-        </Layout>
+      <Layout>
+        <Head title="Contact" />
+        <h1>Contact</h1>
+      </Layout>
     )
 }

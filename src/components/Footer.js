@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Footer() {
+export default function Footer(props) {
     return (
         <div>
-            Create 2019
+            <h2>Footer</h2>
         </div>
     )
 }
